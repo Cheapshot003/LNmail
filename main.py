@@ -6,7 +6,7 @@ import mail
 import os
 import qrcode
 
-with open("token1.dat") as file:
+with open("token.dat") as file:
     token = file.read()
 
 bot = telebot.TeleBot(token) # creating a instance
