@@ -13,6 +13,7 @@ def get_hash(chatid):
 def save_hash(chatid, rhash):
     con = sqlite3.connect("payments.db")
     cur = con.cursor()
+    cur.execute("DELETE FROM payments WHERE chat_id=\'" + str(chatid) + "\'")
     cur.execute("INSERT INTO payments VALUES (\'" + str(chatid) + "\',\'" + str(rhash) + "\')")
     con.commit()
     con.close()
