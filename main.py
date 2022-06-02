@@ -29,7 +29,7 @@ def get_email(message):
     photo = open("qr.png", "rb")
     rhash1 = int.from_bytes(invoice[1], "big")
     print(invoice[0])
-    print(invoice[1])
+    print(rhash1)
     db.db.save_hash(message.chat.id, rhash1)
     bot.send_message(message.chat.id, "Please pay this 2100 Sat invoice and send /check when you're done:")
     bot.send_message(message.chat.id, invoice[0])
