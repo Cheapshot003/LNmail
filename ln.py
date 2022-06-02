@@ -26,7 +26,7 @@ def get_invoice(amount):
     return [response.payment_request, response.r_hash]
 
 def check_invoice(invoice):
-    invoice1 = invoice.encode()
+    invoice1 = bytes(invoice)
     request = ln.PaymentHash(r_hash=invoice1)
     response = stub.LookupInvoice(request, metadata=[('macaroon', macaroon)])
     return response.settled
