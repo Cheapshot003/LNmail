@@ -27,6 +27,8 @@ def get_email(message):
     img = qrcode.make(invoice[0])
     img.save("qr.png")
     photo = open("qr.png", "rb")
+    print(invoice[0])
+    print(invoice[1])
     db.db.save_hash(message.chat.id, invoice[1])
     bot.send_message(message.chat.id, "Please pay this 2100 Sat invoice and send /check when you're done:")
     bot.send_message(message.chat.id, invoice[0])
