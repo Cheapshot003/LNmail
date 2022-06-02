@@ -4,9 +4,11 @@ def get_hash(chatid):
     con = sqlite3.connect("../db/payments.db")
     cur = con.cursor()
     daten = cur.execute("SELECT rhash FROM payments WHERE chat_id=\'" + str(chatid) + "\'")
-    con.close()
+    
     for i in daten:
-        return i[0]
+        soos = i[0]
+    con.close()
+    return soos
 
 def save_hash(chatid, rhash):
     con = sqlite3.connect("../db/payments.db")
