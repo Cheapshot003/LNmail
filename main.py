@@ -1,6 +1,6 @@
 import telebot
 from telebot import types
-
+import db.db
 import ln
 import mail
 import os
@@ -28,6 +28,7 @@ def get_email(message):
     img = qrcode.make(invoice[0])
     img.save("qr.png")
     photo = open("qr.png", "rb")
+    db.db.save_hash(message.chat.id, invoice[1])
     bot.send_message(message.chat.id, "Please pay this 2100 Sat invoice and send /check when you're done:")
     bot.send_message(message.chat.id, invoice[0])
     bot.send_photo(message.chat.id, photo)
