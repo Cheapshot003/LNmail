@@ -13,7 +13,6 @@ bot = telebot.TeleBot(token) # creating a instance
 
 mail_flag = False
 chat_id = 0
-payments =
 @bot.message_handler(commands = ['greet','start'])
 def greet(message):
     msg = "Steuern sind Raub!"
@@ -35,7 +34,12 @@ def get_email(message):
 
 @bot.message_handler(commands=["check"])
 def checkPayment(message):
-    status = ln.check_invoice()
+    rhash = db.db.get_hash(message.chat.id)
+    status = ln.check_invoice(rhash)
+    if status:
+        bot.send_message(message.chat.id, "Payment Successful")
+    else:
+        bot.send_message(message.chat.id, "No payment recieved")
 
 
 
