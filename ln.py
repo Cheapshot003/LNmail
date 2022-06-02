@@ -24,3 +24,8 @@ def get_invoice(amount):
     response = stub.AddInvoice(request, metadata=[('macaroon', macaroon)])
 
     return [response.payment_request, response.r_hash]
+
+def check_invoice(invoice):
+    request = ln.PaymentHash(r_hash=invoice)
+    response = stub.LookupInvoice(request, metadata=[('macaroon', macaroon)])
+    return response.settled
